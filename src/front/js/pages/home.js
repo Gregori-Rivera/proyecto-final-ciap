@@ -16,7 +16,7 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="text-center mt-5" id="img-fondo">
+    <div className="text-center" id="img-fondo">
       <div className="user-img">
         <img src="https://picsum.photos/id/323/100/100"></img>
       </div>
