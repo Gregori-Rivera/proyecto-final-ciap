@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 
 export const Single = (props) => {
@@ -26,6 +28,11 @@ export const Single = (props) => {
   return (
     <div className="jumbotron">
       <body>
+        <Link to="/home">
+          <span className="btn btn-secondary btn-lg m-3" href="#" role="button">
+            <FontAwesomeIcon icon={ faArrowLeft } />
+          </span>
+        </Link>
         <div class="container">
           <div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
             <div class="tab-content" id="myTabContent">
@@ -81,11 +88,7 @@ export const Single = (props) => {
         </div>
       </body>
 
-      <Link to="/">
-        <span className="btn btn-primary btn-lg" href="#" role="button">
-          Back home
-        </span>
-      </Link>
+      
     </div>
   );
 };
