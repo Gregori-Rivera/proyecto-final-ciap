@@ -1,3 +1,4 @@
+// Página principal de la app
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
@@ -33,8 +34,8 @@ export const Home = () => {
 				})}
 			</ul>
 			<br />
-			<Link to="/login">
-				<button className="btn btn-primary">Back home</button>
+			<Link to="/">
+				<button className="btn btn-primary"></button>
 			</Link>
 		</div>
 	);

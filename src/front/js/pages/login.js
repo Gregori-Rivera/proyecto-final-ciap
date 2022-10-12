@@ -1,3 +1,4 @@
+// Página de Login, se rediccionará aquí por defecto si el usuario no está autenticado
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
@@ -41,7 +42,7 @@ export const Login = () => {
               />
             </div>
             <div className="d-grid gap-2 mt-3">
-              <Link to="/">
+              <Link to="/home">
                 <button type="submit" className="btn btn-primary">
                   Ingresar
                 </button>
