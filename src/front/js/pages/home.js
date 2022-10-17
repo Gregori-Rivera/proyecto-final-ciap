@@ -7,12 +7,12 @@ import Chart from "chart.js/auto";
 // import Chart from "../component/Chart.js";
 //import Chart from "Chart.js";
 import { Context } from "../store/appContext";
-import { Line } from "react-chartjs-2";
+import { Line, Pie } from "react-chartjs-2";
 import { Bar } from "react-chartjs-2";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  const [chartData, setChartData] = useState({})
+  const [chartData, setChartData] = useState({labels:[],datasets:[]})
   /* <Chart chartData={chartData} /> */
 
   // Estado de reloj (relleno del home)
@@ -84,7 +84,7 @@ const labels = ["January", "February", "March", "April", "May", "June"];
       <div className="bg-light fs-1 d-flex justify-content-center">
         <span>Se supone que esto es el home</span>
 		
-        <Bar data={datum} />
+        <Bar data={chartData} />
       </div>
       <div></div>
 
