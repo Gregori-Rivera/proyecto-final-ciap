@@ -8,6 +8,9 @@ export const Navbar = () => {
 				<Link to="/home">
 					<span className="navbar-brand mb-0 h1">Logo de la app</span>
 				</Link>
+				<Link to="/nosotros">
+					<span className="navbar-brand mb-0 h1">Nosotros</span>
+				</Link>
 			</div>
 		</nav>
 	);

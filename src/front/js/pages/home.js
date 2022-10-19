@@ -82,7 +82,7 @@ const labels = ["January", "February", "March", "April", "May", "June"];
       </div>
 
       <div className="bg-light fs-1 d-flex justify-content-center">
-        <span>Se supone que esto es el home</span>
+        <span></span>
 		
         <Bar data={chartData} />
       </div>
