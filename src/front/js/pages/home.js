@@ -12,7 +12,7 @@ import { Bar } from "react-chartjs-2";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  const [chartData, setChartData] = useState({labels:[],datasets:[]})
+  const [chartData, setChartData] = useState({ labels: [], datasets: [] });
   /* <Chart chartData={chartData} /> */
 
   // Estado de reloj (relleno del home)
@@ -24,35 +24,34 @@ export const Home = () => {
 
   useEffect(() => {
     const fetchPrices = async () => {
-  	const res = await fetch("https://api.coincap.io/v2/assets/?limit=5")
-  	const grafico = await res.json()
-  	setChartData({
-  		labels: grafico.data.map((crypto) => crypto.name),
-  		datasets: [
-  		  {
-  			label: "Price in USD",
-  			data: grafico.data.map((crypto) => crypto.rank),
-  			backgroundColor: [
-  			  "#ffbb11",
-  			  "#ecf0f1",
-  			  "#50AF95",
-  			  "#f3ba2f",
-  			  "#2a71d0"
-  			]
-  		  }
-  		]
-  	  });
-		console.log("grafico")
-		console.log(grafico)
-		console.log("chardata")
-		console.log(chartData)
-  	};
-  	fetchPrices()
-    }, []);
+      const res = await fetch("https://api.coincap.io/v2/assets/?limit=5");
+      const grafico = await res.json();
+      setChartData({
+        labels: grafico.data.map((crypto) => crypto.name),
+        datasets: [
+          {
+            label: "Price in USD",
+            data: grafico.data.map((crypto) => crypto.rank),
+            backgroundColor: [
+              "#ffbb11",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+          },
+        ],
+      });
+      console.log("grafico");
+      console.log(grafico);
+      console.log("chardata");
+      console.log(chartData);
+    };
+    fetchPrices();
+  }, []);
 
-const labels = ["January", "February", "March", "April", "May", "June"];
+  const labels = ["January", "February", "March", "April", "May", "June"];
   const datum = {
-	
     labels: labels,
     datasets: [
       {
@@ -60,11 +59,10 @@ const labels = ["January", "February", "March", "April", "May", "June"];
         backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgb(255, 99, 132)",
         data: [0, 5, 2, 20, 30, 45],
-		
       },
     ],
   };
-  console.log(datum)
+  console.log(datum);
 
   return (
     <div className="container">
@@ -82,11 +80,13 @@ const labels = ["January", "February", "March", "April", "May", "June"];
       </div>
 
       <div className="bg-light fs-1 d-flex justify-content-center">
-        <span></span>
-		
-        <Bar data={chartData} />
+        <div className="barchart" style={{ height: "700px", width: "700px" }}>
+          <Bar data={chartData} options={{ maintainAspectRatio: false }} />
+        </div>
+        <div className="piechart" style={{ height: "700px", width: "700px" }}>
+          <Pie data={chartData} options={{ maintainAspectRatio: false }} />
+        </div>
       </div>
-      <div></div>
 
       <div
         className="offcanvas offcanvas-start"
