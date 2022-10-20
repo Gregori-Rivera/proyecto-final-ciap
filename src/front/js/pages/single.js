@@ -11,6 +11,30 @@ export const Single = (props) => {
   const params = useParams();
   const [address, setAddress] = useState([]);
 
+  let registro = [];
+
+  for(let i = 0; i < 10; i++){  
+    registro[i] = {
+      aba: "200"+i,
+      nombreBanco: "banco"+i,
+      ambiente: "ambiente"+i,
+      switch: "switch"+i,
+      producto: "producto"+i,
+      puerto: "puerto"+i
+    }
+  }
+
+  localStorage.setItem("registro1", JSON.stringify(registro[0]));
+  localStorage.setItem("registro2", JSON.stringify(registro[1]));
+  localStorage.setItem("registro3", JSON.stringify(registro[2]));
+  localStorage.setItem("registro4", JSON.stringify(registro[3]));
+  localStorage.setItem("registro5", JSON.stringify(registro[4]));
+  localStorage.setItem("registro6", JSON.stringify(registro[5]));
+  localStorage.setItem("registro7", JSON.stringify(registro[6]));
+  localStorage.setItem("registro8", JSON.stringify(registro[7]));
+  localStorage.setItem("registro9", JSON.stringify(registro[8]));
+  localStorage.setItem("registro10", JSON.stringify(registro[9]));
+
   useEffect(() => {
     const getToDo = async () => {
       let response = await fetch("https://api.ipify.org?format=json", {
