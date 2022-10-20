@@ -124,8 +124,8 @@ export const Home = () => {
                   className="list-group-item d-flex justify-content-between"
                   style={{ background: item.background }}
                 >
-                  <Link to={"/single/" + index}>
-                    <span>Link to: {item.title}</span>
+                  <Link to={item.link}>
+                    <span>{item.title}</span>
                   </Link>
                 </li>
               );

@@ -4,14 +4,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			nav_items: [
 				{
-					title: "FIRST",
+					title: "Mostrar información",
 					background: "white",
-					initial: "white"
+					initial: "white",
+					link: "/single/"
 				},
 				{
-					title: "SECOND",
+					title: "Agregar información",
 					background: "white",
-					initial: "white"
+					initial: "white",
+					link: "/agregar/"
 				}
 			]
 		},
