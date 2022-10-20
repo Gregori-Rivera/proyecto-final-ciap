@@ -90,11 +90,14 @@ export const Home = () => {
       </div>
 
       <div className="bg-light fs-1 d-flex justify-content-center">
-        <div className="barchart" style={{ height: "700px", width: "700px" }}>
+        <div className="barchart" style={{ zIndex:"1", height: "700px", width: "700px" }}>
           <Bar data={chartData} options={{ maintainAspectRatio: false }} />
         </div>
-        <div className="piechart" style={{ height: "700px", width: "700px" }}>
+        <div className="piechart" style={{ zIndex:"1", height: "700px", width: "700px" }}>
           <Pie data={chartData} options={{ maintainAspectRatio: false }} />
+        </div>
+        <div className="fs-1 m-auto d-flex justify-content-center align-items-center" style={{ zIndex:"2", position: "absolute", height: "700px", width: "700px", animation: "fadeMe 2.5s ease-out", animationFillMode: "forwards"}}>
+          <span>Loading graphs...</span>
         </div>
       </div>
 
