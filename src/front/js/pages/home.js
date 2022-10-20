@@ -13,14 +13,36 @@ import { Bar } from "react-chartjs-2";
 export const Home = () => {
   const { store, actions } = useContext(Context);
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
-  /* <Chart chartData={chartData} /> */
+  const locale = "en";
+  const [today, setDate] = React.useState(new Date());
+  // Save the current date to be able to trigger an update
 
-  // Estado de reloj (relleno del home)
-  // const [time, updateTime] = useState(new Date());
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      // Esto crea un intervale que va ir actualizando cada minuto
+      // Este trigger va rerenderizar cada componente que use el hook useDate
+      setDate(new Date());
+    }, 60 * 1000);
+    return () => {
+      clearInterval(timer); // Returna una funcion que limpia el timer
+    };
+  }, []);
 
-  // const timeChange = () => {
-  // 	setInterval(updateTime(new Date()),1000)
-  // }
+  const day = today.toLocaleDateString(locale, { weekday: "long" });
+  const date = `${day}, ${today.getDate()} ${today.toLocaleDateString(locale, {
+    month: "long",
+  })}\n\n`;
+
+  const hour = today.getHours();
+  const wish = `Good ${
+    (hour < 12 && "Morning") || (hour < 17 && "Afternoon") || "Evening"
+  }, `;
+
+  const time = today.toLocaleTimeString(locale, {
+    hour: "numeric",
+    hour12: true,
+    minute: "numeric",
+  });
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -42,27 +64,9 @@ export const Home = () => {
           },
         ],
       });
-      console.log("grafico");
-      console.log(grafico);
-      console.log("chardata");
-      console.log(chartData);
     };
     fetchPrices();
   }, []);
-
-  const labels = ["January", "February", "March", "April", "May", "June"];
-  const datum = {
-    labels: labels,
-    datasets: [
-      {
-        label: "My First dataset",
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
-        data: [0, 5, 2, 20, 30, 45],
-      },
-    ],
-  };
-  console.log(datum);
 
   return (
     <div className="container">
@@ -76,7 +80,13 @@ export const Home = () => {
         >
           <FontAwesomeIcon className="fs-2" icon={faBars} />
         </a>
-        <span className="fs-3 mx-3">Bienvenido, username</span>
+        <span className="d-flex fs-3 mx-3">
+          {date}
+          {time}
+          <pre> </pre>
+          {wish} username
+        </span>
+        <div className="d-flex"></div>
       </div>
 
       <div className="bg-light fs-1 d-flex justify-content-center">
