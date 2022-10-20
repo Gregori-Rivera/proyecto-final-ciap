@@ -11,10 +11,11 @@ export const Single = (props) => {
   const params = useParams();
   const [address, setAddress] = useState([]);
 
-  let registro = [];
+  let registros = [];
 
+  // Relleno de información cualquiera
   for(let i = 0; i < 10; i++){  
-    registro[i] = {
+    registros[i] = {
       aba: "200"+i,
       nombreBanco: "banco"+i,
       ambiente: "ambiente"+i,
@@ -24,16 +25,14 @@ export const Single = (props) => {
     }
   }
 
-  localStorage.setItem("registro1", JSON.stringify(registro[0]));
-  localStorage.setItem("registro2", JSON.stringify(registro[1]));
-  localStorage.setItem("registro3", JSON.stringify(registro[2]));
-  localStorage.setItem("registro4", JSON.stringify(registro[3]));
-  localStorage.setItem("registro5", JSON.stringify(registro[4]));
-  localStorage.setItem("registro6", JSON.stringify(registro[5]));
-  localStorage.setItem("registro7", JSON.stringify(registro[6]));
-  localStorage.setItem("registro8", JSON.stringify(registro[7]));
-  localStorage.setItem("registro9", JSON.stringify(registro[8]));
-  localStorage.setItem("registro10", JSON.stringify(registro[9]));
+  // Guardado de la información en el local storage
+  localStorage.informacionTabla = JSON.stringify(Array.from(registros.entries()));
+
+  //Recuperando la información del local storage a un objeto Map
+  let informacionTabla = new Map(JSON.parse(localStorage.informacionTabla));
+
+  //Convirtiendo el objeto Map a un array
+  let fila = Array.from(informacionTabla.values());
 
   useEffect(() => {
     const getToDo = async () => {
@@ -51,33 +50,32 @@ export const Single = (props) => {
 
   return (
     <div className="jumbotron">
-      <body>
         <Link to="/home">
           <span className="btn btn-secondary btn-lg m-3" href="#" role="button">
             <FontAwesomeIcon icon={ faArrowLeft } />
           </span>
         </Link>
-        <div class="container">
-          <div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
-            <div class="tab-content" id="myTabContent">
+        <div className="container">
+          <div className="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
+            <div className="tab-content" id="myTabContent">
               <div
-                class="tab-pane fade show active"
+                className="tab-pane fade show active"
                 id="list"
                 role="tabpanel"
                 aria-labelledby="list-tab"
               >
-                <div class="card">
-                  <div class="card-header">
+                <div className="card">
+                  <div className="card-header">
                     <h4>Lista de Puertos</h4>
                   </div>
-                  <div class="card-body">
+                  <div className="card-body">
                     <div>
-                      <div class="table-responsive">
+                      <div className="table-responsive">
                         <table
                           id="userList"
-                          class="table table-bordered table-hover table-striped"
+                          className="table table-bordered table-hover table-striped"
                         >
-                          <thead class="thead-light">
+                          <thead className="thead-light">
                             <tr>
                               <th scope="col">Aba</th>
                               <th scope="col">Nombre de Banco</th>
@@ -90,16 +88,20 @@ export const Single = (props) => {
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th>{address.ip}</th>
-                              <th>{address.ip}</th>
-                            </tr>
+                            {
+                              fila.map((item, index) => (
+                                <tr key={index}>
+                                  <td>{item.aba}</td>
+                                  <td>{item.nombreBanco}</td>
+                                  <td>{item.ambiente}</td>
+                                  <td>{item.switch}</td>
+                                  <td>{item.producto}</td>
+                                  <td>{item.puerto}</td>
+                                  <td>{address.ip}</td>
+                                  <td>{address.ip}</td>
+                                </tr>
+                              ))
+                            }
                           </tbody>
                         </table>
                       </div>
@@ -110,9 +112,6 @@ export const Single = (props) => {
             </div>
           </div>
         </div>
-      </body>
-
-      
     </div>
   );
 };
