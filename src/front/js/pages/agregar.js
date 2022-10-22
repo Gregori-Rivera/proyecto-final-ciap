@@ -19,12 +19,11 @@ export const Agregar = () =>  {
 
   const [formValues, setFormValues] = useState([]);
 
-  const submitForm = () => {
+  const submitForm = (e) => {
+    e.preventDefault();
     setFormValues((prevFormValues) => [...prevFormValues, initialValues]);
+    localStorage.setItem("formValues", JSON.stringify(formValues));
   };
-
-  useEffect(() => {
-    localStorage.setItem("formValues", JSON.stringify(formValues));}, [formValues]);
 
   return (
     <div className="container mx-auto mb-5">
