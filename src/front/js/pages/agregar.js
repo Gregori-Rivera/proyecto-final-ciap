@@ -20,9 +20,9 @@ export const Agregar = () =>  {
   const [formValues, setFormValues] = useState([]);
 
   const submitForm = (e) => {
-    e.preventDefault();
     setFormValues((prevFormValues) => [...prevFormValues, initialValues]);
-    localStorage.setItem("formValues", JSON.stringify(formValues));
+    localStorage.setItem('registro' + localStorage.length, JSON.stringify(formValues));
+    e.preventDefault();
   };
 
   return (

@@ -12,26 +12,30 @@ export const Single = (props) => {
   const [address, setAddress] = useState([]);
 
   let registros = [];
-
-  // Relleno de información cualquiera
-  for(let i = 0; i < 10; i++){  
+  //lógica para recuperar registros añadidos en la página Agregar
+  // for(let i = 0; i < localStorage.length; i++){ 
+    //   registros[i] = JSON.parse(localStorage.getItem("registro"+i));
+    //   console.log(registros[i]);
+    // }
+    
+    // Relleno de información cualquiera
+    for(let i = 0; i < 10; i++){ 
     registros[i] = {
       aba: "200"+i,
       nombreBanco: "banco"+i,
       ambiente: "ambiente"+i,
       switch: "switch"+i,
       producto: "producto"+i,
-      puerto: "puerto"+i
-    }
+      puerto: "puerto"+i}
   }
 
-  // Guardado de la información en el local storage
+  // // Guardado de la información en el local storage
   localStorage.informacionTabla = JSON.stringify(Array.from(registros.entries()));
 
-  //Recuperando la información del local storage a un objeto Map
+  // //Recuperando la información del local storage a un objeto Map
   let informacionTabla = new Map(JSON.parse(localStorage.informacionTabla));
 
-  //Convirtiendo el objeto Map a un array
+  // //Convirtiendo el objeto Map a un array
   let fila = Array.from(informacionTabla.values());
 
   useEffect(() => {
