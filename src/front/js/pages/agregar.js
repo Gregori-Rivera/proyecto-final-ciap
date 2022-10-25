@@ -16,13 +16,13 @@ export const Agregar = () =>  {
     producto: "",
     puerto: ""
   });
-
+  
   const [formValues, setFormValues] = useState([]);
 
   const submitForm = (e) => {
-    setFormValues((prevFormValues) => [...prevFormValues, initialValues]);
-    localStorage.setItem('registro' + localStorage.length, JSON.stringify(formValues));
     e.preventDefault();
+    setFormValues((prevFormValues) => [...prevFormValues, initialValues]);
+    localStorage.setItem('formValues', JSON.stringify(Array.from(formValues.entries())));
   };
 
   return (

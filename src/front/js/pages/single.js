@@ -6,37 +6,62 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 
+const llenadoTabla = () => {
+  // if(!(localStorage.getItem("informacionTabla") === null)){
+  //   let informacionPrevia = new Map(JSON.parse(localStorage.informacionTabla));
+  //   console.log(informacionPrevia);
+  //   let informacionTabla = new Map(JSON.parse(localStorage.formValues));
+  //   let fila1 = Array.from(informacionPrevia.values());
+  //   let fila2 = Array.from(informacionTabla.values());
+  //   let fila = [...fila1,...fila2];
+  //   console.log(fila);
+  //   localStorage.informacionTabla = JSON.stringify(Array.from(fila.entries()));
+  //   return fila;
+  // } else {
+    localStorage.informacionTabla = localStorage.getItem("formValues");
+    let informacionTabla = new Map(JSON.parse(localStorage.informacionTabla));
+    let fila = Array.from(informacionTabla.values());
+    return fila;
+  // }
+}
+
 export const Single = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
   const [address, setAddress] = useState([]);
 
-  let registros = [];
-  //lógica para recuperar registros añadidos en la página Agregar
-  // for(let i = 0; i < localStorage.length; i++){ 
-    //   registros[i] = JSON.parse(localStorage.getItem("registro"+i));
-    //   console.log(registros[i]);
-    // }
-    
+  // let registros = [];
+  // //lógica para recuperar registros añadidos en la página Agregar
+  // for(let i = 0; i < localStorage.length; i++){
+  //     registros[i] = JSON.parse(localStorage.getItem("registro"+i));
+  //     console.log(registros[i]);
+  //   }
+
     // Relleno de información cualquiera
-    for(let i = 0; i < 10; i++){ 
-    registros[i] = {
-      aba: "200"+i,
-      nombreBanco: "banco"+i,
-      ambiente: "ambiente"+i,
-      switch: "switch"+i,
-      producto: "producto"+i,
-      puerto: "puerto"+i}
-  }
+  //   for(let i = 0; i < 10; i++){
+  //   registros[i] = {
+  //     aba: "200"+i,
+  //     nombreBanco: "banco"+i,
+  //     ambiente: "ambiente"+i,
+  //     switch: "switch"+i,
+  //     producto: "producto"+i,
+  //     puerto: "puerto"+i}
+  // }
 
   // // Guardado de la información en el local storage
-  localStorage.informacionTabla = JSON.stringify(Array.from(registros.entries()));
+  // localStorage.informacionTabla = JSON.stringify(Array.from(registros.entries()));
+  // useEffect(() => {
+  // })
+
+  // localStorage.informacionTabla = localStorage.getItem("formValues");
 
   // //Recuperando la información del local storage a un objeto Map
-  let informacionTabla = new Map(JSON.parse(localStorage.informacionTabla));
+  // let informacionTabla = new Map(JSON.parse(localStorage.informacionTabla));
 
   // //Convirtiendo el objeto Map a un array
-  let fila = Array.from(informacionTabla.values());
+  // let fila = Array.from(informacionTabla.values());
+  
+  let fila = llenadoTabla();
 
   useEffect(() => {
     const getToDo = async () => {
