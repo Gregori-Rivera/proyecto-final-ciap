@@ -118,7 +118,7 @@ export const Single = (props) => {
                           </thead>
                           <tbody>
                             {
-                              fila.map((item, index) => (
+                              store.banks.map((item, index) => (
                                 <tr key={index}>
                                   <td>{item.aba}</td>
                                   <td>{item.nombreBanco}</td>

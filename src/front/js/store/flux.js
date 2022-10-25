@@ -61,12 +61,21 @@ const getState = ({ getStore, getActions, setStore }) => {
         getActions().changeColor(0, "green");
       },
 
-      getCities: async () => {
-        const citiesCol = collection(db, "users");
-        const citySnapshot = await getDocs(citiesCol);
-        console.log(citySnapshot);
-        const cityList = citySnapshot.docs.map((doc) => doc.data());
-        return cityList;
+      getBanks: async () => {
+        const banksCol = collection(db, "banks");
+        const bankSnapshot = await getDocs(banksCol);
+        const bankList = bankSnapshot.docs.map((doc) => doc.data());
+        setStore({banks:bankList});
+      },
+
+      addBank: async (bank) => {
+        try {
+          const docRef = await addDoc(collection(db, "banks"), bank);
+          console.log("Document written with ID: ", docRef.id);
+          getActions().getBanks();
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
       },
 
       getMessage: async () => {

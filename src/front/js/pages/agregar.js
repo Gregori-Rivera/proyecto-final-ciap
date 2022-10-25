@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { Context } from "../store/appContext";
 
 export const Agregar = () =>  {
 
@@ -19,10 +20,13 @@ export const Agregar = () =>  {
   
   const [formValues, setFormValues] = useState([]);
 
+  const {actions} = useContext(Context)
+
   const submitForm = (e) => {
     e.preventDefault();
     setFormValues((prevFormValues) => [...prevFormValues, initialValues]);
-    localStorage.setItem('formValues', JSON.stringify(Array.from(formValues.entries())));
+    // localStorage.setItem('formValues', JSON.stringify(Array.from(formValues.entries())));
+    actions.addBank(initialValues);
   };
 
   return (
