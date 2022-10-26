@@ -119,7 +119,7 @@ export const Home = () => {
           ></button>
         </div>
         <div className="offcanvas-body">
-          <ul className="list-group">
+          <ul className="list-group list-group-flush">
             {store.nav_items.map((item, index) => {
               return (
                 <li
@@ -128,7 +128,7 @@ export const Home = () => {
                   style={{ background: item.background }}
                 >
                   <Link to={item.link}>
-                    <span>{item.title}</span>
+                    <button className="btn btn-warning fs-5">{item.title}</button>
                   </Link>
                 </li>
               );
