@@ -12,6 +12,12 @@
    width: 20vw;
 }
 
+.table-wrapper {
+    max-height: 60vh;
+    overflow: auto;
+    display:inline-block;
+  }
+
 /* .allowScroll {
 overflow: visible;
 } */

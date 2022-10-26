@@ -102,7 +102,7 @@ export const Single = (props) => {
                   </div>
                   <div className="card-body">
                     <div>
-                      <div className="table-responsive">
+                      <div className="table-responsive table-wrapper">
                         <table
                           id="userList"
                           className="table table-bordered table-hover table-striped"
