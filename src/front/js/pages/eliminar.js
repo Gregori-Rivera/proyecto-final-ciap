@@ -37,7 +37,7 @@ export const Eliminar = () =>  {
             <FontAwesomeIcon icon={ faArrowLeft } />
           </span>
         </Link>
-        <h5 className="mx-2 fs-2">Eliminar Información</h5>
+        <h5 className="mx-2 fs-2"> Eliminar Información</h5>
       </div>
     </div>
   );

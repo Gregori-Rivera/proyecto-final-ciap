@@ -78,7 +78,7 @@ export const Single = (props) => {
   }, []);
 
   return (
-    <div className="jumbotron">
+    <div className="flex-column">
       <div className="d-flex justify-content-start align-items-center">
         <Link to="/home">
           <span className="btn btn-secondary btn-lg m-3" href="#" role="button">

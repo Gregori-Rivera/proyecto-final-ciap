@@ -38,6 +38,7 @@ console.log(db);
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      banks:[],
       message: null,
       nav_items: [
         {

@@ -15,10 +15,15 @@ import Chart from "chart.js/auto";
 //import Chart from "Chart.js";
 import { Context } from "../store/appContext";
 import { Line, Pie } from "react-chartjs-2";
-import { Bar } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
+import { object, string } from "prop-types";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+  const [chartDataDoughnut, setChartDataDoughnut] = useState({
+    labels: [],
+    datasets: [],
+  });
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
   const locale = "en";
   const [today, setDate] = React.useState(new Date());
@@ -51,29 +56,72 @@ export const Home = () => {
     minute: "numeric",
   });
 
+  function graficando() {
+    store.banks.map((item, index) => {});
+  }
+
+  graficando();
+
   useEffect(() => {
     const fetchPrices = async () => {
-      const res = await fetch("https://api.coincap.io/v2/assets/?limit=5");
-      const grafico = await res.json();
-      setChartData({
-        labels: grafico.data.map((crypto) => crypto.name),
+      let productos = {};
+      for (let i = 0; i < store.banks.length; i++) {
+        if (productos[store.banks[i].producto] == undefined) {
+          productos[store.banks[i].producto] = 1;
+          console.log("estoy en el if");
+        } else {
+          console.log("estoy en el else");
+          productos[store.banks[i].producto] =
+            productos[store.banks[i].producto] + 1;
+        }
+      }
+
+      let ambientes = {};
+      for (let i = 0; i < store.banks.length; i++) {
+        if (ambientes[store.banks[i].ambiente] == undefined) {
+          ambientes[store.banks[i].ambiente] = 1;
+          console.log("estoy en el if");
+        } else {
+          console.log("estoy en el else");
+          ambientes[store.banks[i].ambiente] =
+            ambientes[store.banks[i].ambiente] + 1;
+        }
+      }
+
+      setChartDataDoughnut({
+        labels: Object.keys(ambientes),
         datasets: [
           {
-            label: "Price in USD",
-            data: grafico.data.map((crypto) => crypto.rank),
+            label: "",
+            data: Object.values(ambientes),
             backgroundColor: [
-              "#ffbb11",
-              "#ecf0f1",
+              "#1870d5",
+              "#FF7A7A",
               "#50AF95",
               "#f3ba2f",
-              "#2a71d0",
+            ],
+          },
+        ],
+      });
+
+      setChartData({
+        labels: Object.keys(productos),
+        datasets: [
+          {
+            label: "borrame",
+            data: Object.values(productos),
+            backgroundColor: [
+              "#1870d5",
+              "#FF7A7A",
+              "#50AF95",
+              "#f3ba2f",
             ],
           },
         ],
       });
     };
     fetchPrices();
-  }, []);
+  }, [store.banks]);
 
   return (
     <div className="container">
@@ -97,13 +145,32 @@ export const Home = () => {
       </div>
 
       <div className="bg-light fs-1 d-flex justify-content-center">
-        <div className="barchart" style={{ zIndex:"1", height: "700px", width: "700px" }}>
-          <Bar data={chartData} options={{ maintainAspectRatio: false }} />
+        <div
+          className="barchart"
+          style={{ zIndex: "1", height: "700px", width: "700px" }}
+        > 
+          <Doughnut data={chartDataDoughnut} options={{ maintainAspectRatio: false }} />
         </div>
-        <div className="piechart" style={{ zIndex:"1", height: "700px", width: "700px" }}>
-          <Pie data={chartData} options={{ maintainAspectRatio: false }} />
+        <div
+          className="piechart"
+          style={{ zIndex: "1", height: "700px", width: "700px" }}
+        >
+          <Pie
+            data={chartData}
+            options={{ maintainAspectRatio: false, labels: { fontSize: 0 } }}
+          />
         </div>
-        <div className="fs-1 m-auto d-flex justify-content-center align-items-center" style={{ zIndex:"2", position: "absolute", height: "700px", width: "700px", animation: "fadeMe 2.5s ease-out", animationFillMode: "forwards"}}>
+        <div
+          className="fs-1 m-auto d-flex justify-content-center align-items-center"
+          style={{
+            zIndex: "2",
+            position: "absolute",
+            height: "700px",
+            width: "700px",
+            animation: "fadeMe 2.5s ease-out",
+            animationFillMode: "forwards",
+          }}
+        >
           <span>Loading graphs...</span>
         </div>
       </div>
@@ -134,21 +201,47 @@ export const Home = () => {
                   className="list-group-item d-flex justify-content-start align-items-center"
                   style={{ background: item.background }}
                 >
-                  {index === 0? <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faFileAlt} /> :
-                   index === 1? <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faFileImport} /> :
-                   index === 2? <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faFileExcel} /> :
-                   index === 3? <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faFileSignature} /> :
-                  <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faChartPie} />}
-                    <Link to={item.link}>
-                      <button className="btn btn-warning fs-5 sidebarButtons">{item.title}</button>
-                    </Link>
+                  {index === 0 ? (
+                    <FontAwesomeIcon
+                      className="fs-2 mx-auto px-auto"
+                      icon={faFileAlt}
+                    />
+                  ) : index === 1 ? (
+                    <FontAwesomeIcon
+                      className="fs-2 mx-auto px-auto"
+                      icon={faFileImport}
+                    />
+                  ) : index === 2 ? (
+                    <FontAwesomeIcon
+                      className="fs-2 mx-auto px-auto"
+                      icon={faFileExcel}
+                    />
+                  ) : index === 3 ? (
+                    <FontAwesomeIcon
+                      className="fs-2 mx-auto px-auto"
+                      icon={faFileSignature}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      className="fs-2 mx-auto px-auto"
+                      icon={faChartPie}
+                    />
+                  )}
+                  <Link to={item.link}>
+                    <button className="btn btn-warning fs-5 sidebarButtons">
+                      {item.title}
+                    </button>
+                  </Link>
                 </li>
               );
             })}
           </ul>
         </div>
         <div className="m-4 d-flex align-items-center">
-        <FontAwesomeIcon className="text-danger fs-2 me-2" icon={faToggleOff} />
+          <FontAwesomeIcon
+            className="text-danger fs-2 me-2"
+            icon={faToggleOff}
+          />
           <Link to="/">
             <button className="btn btn-danger fs-5">Cerrar Sesión</button>
           </Link>
