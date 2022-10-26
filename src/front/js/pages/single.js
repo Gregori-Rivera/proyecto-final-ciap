@@ -6,24 +6,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 
-const llenadoTabla = () => {
-  // if(!(localStorage.getItem("informacionTabla") === null)){
-  //   let informacionPrevia = new Map(JSON.parse(localStorage.informacionTabla));
-  //   console.log(informacionPrevia);
-  //   let informacionTabla = new Map(JSON.parse(localStorage.formValues));
-  //   let fila1 = Array.from(informacionPrevia.values());
-  //   let fila2 = Array.from(informacionTabla.values());
-  //   let fila = [...fila1,...fila2];
-  //   console.log(fila);
-  //   localStorage.informacionTabla = JSON.stringify(Array.from(fila.entries()));
-  //   return fila;
-  // } else {
-    localStorage.informacionTabla = localStorage.getItem("formValues");
-    let informacionTabla = new Map(JSON.parse(localStorage.informacionTabla));
-    let fila = Array.from(informacionTabla.values());
-    return fila;
-  // }
-}
+// const llenadoTabla = () => {
+//   // if(!(localStorage.getItem("informacionTabla") === null)){
+//   //   let informacionPrevia = new Map(JSON.parse(localStorage.informacionTabla));
+//   //   console.log(informacionPrevia);
+//   //   let informacionTabla = new Map(JSON.parse(localStorage.formValues));
+//   //   let fila1 = Array.from(informacionPrevia.values());
+//   //   let fila2 = Array.from(informacionTabla.values());
+//   //   let fila = [...fila1,...fila2];
+//   //   console.log(fila);
+//   //   localStorage.informacionTabla = JSON.stringify(Array.from(fila.entries()));
+//   //   return fila;
+//   // } else {
+//     localStorage.informacionTabla = localStorage.getItem("formValues");
+//     let informacionTabla = new Map(JSON.parse(localStorage.informacionTabla));
+//     let fila = Array.from(informacionTabla.values());
+//     return fila;
+//   // }
+// }
 
 export const Single = (props) => {
   const { store, actions } = useContext(Context);
@@ -61,7 +61,7 @@ export const Single = (props) => {
   // //Convirtiendo el objeto Map a un array
   // let fila = Array.from(informacionTabla.values());
   
-  let fila = llenadoTabla();
+  // let fila = llenadoTabla();
 
   useEffect(() => {
     const getToDo = async () => {

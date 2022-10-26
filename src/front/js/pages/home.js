@@ -108,7 +108,7 @@ export const Home = () => {
         aria-labelledby="offcanvasExampleLabel"
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasExampleLabel">
+          <h5 className="offcanvas-title fs-2" id="offcanvasExampleLabel">
             Opciones
           </h5>
           <button
