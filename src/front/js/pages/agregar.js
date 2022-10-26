@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../store/appContext";
+import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
 
 export const Agregar = () =>  {
 
@@ -31,11 +32,14 @@ export const Agregar = () =>  {
 
   return (
     <div className="container mx-auto mb-5">
-      <Link to="/home">
+      <div className="d-flex justify-content-start align-items-center">
+        <Link to="/home">
           <span className="btn btn-secondary btn-lg m-3" href="#" role="button">
             <FontAwesomeIcon icon={ faArrowLeft } />
           </span>
-      </Link>
+        </Link>
+        <h5 className="mx-2 fs-2">Agregar Información</h5>
+      </div>
       <div className="container mx-auto" style={{ maxWidth: 500, height: 'auto' }}>
         <Form>
           <Form.Group className="m-3" controlId="formBasicAba">
@@ -61,14 +65,6 @@ export const Agregar = () =>  {
           <Form.Group className="m-3" controlId="formBasicPuerto">
             <Form.Label>Puerto</Form.Label>
             <Form.Control type="text" placeholder="Ingrese el Puerto" value={initialValues.puerto} onChange={(e) => setInitialValues({ ...initialValues, puerto: e.target.value })}/>
-          </Form.Group>
-          <Form.Group className="m-3" controlId="formBasicIpBanco">
-            <Form.Label>Dirección IP del Banco</Form.Label>
-            <Form.Control type="text" placeholder="Ingrese la dirección IP del Banco" />
-          </Form.Group>
-          <Form.Group className="m-3" controlId="formBasicIpEmpresa">
-            <Form.Label>Dirección IP de la Empresa</Form.Label>
-            <Form.Control type="text" placeholder="Ingrese la dirección IP de la Empresa" />
           </Form.Group>
           <Button className="m-3" variant="primary" type="submit" onClick={submitForm}>
             Añadir

@@ -3,6 +3,13 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faChartPie } from "@fortawesome/free-solid-svg-icons";
+import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faFileImport } from "@fortawesome/free-solid-svg-icons";
+import { faFileExcel } from "@fortawesome/free-solid-svg-icons";
+import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import { faToggleOff } from "@fortawesome/free-solid-svg-icons";
+import { faEraser } from "@fortawesome/free-solid-svg-icons";
 import Chart from "chart.js/auto";
 // import Chart from "../component/Chart.js";
 //import Chart from "Chart.js";
@@ -124,20 +131,26 @@ export const Home = () => {
               return (
                 <li
                   key={index}
-                  className="list-group-item d-flex justify-content-between"
+                  className="list-group-item d-flex justify-content-start align-items-center"
                   style={{ background: item.background }}
                 >
-                  <Link to={item.link}>
-                    <button className="btn btn-warning fs-5">{item.title}</button>
-                  </Link>
+                  {index === 0? <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faFileAlt} /> :
+                   index === 1? <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faFileImport} /> :
+                   index === 2? <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faFileExcel} /> :
+                   index === 3? <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faFileSignature} /> :
+                  <FontAwesomeIcon className="fs-2 mx-auto px-auto" icon={faChartPie} />}
+                    <Link to={item.link}>
+                      <button className="btn btn-warning fs-5 sidebarButtons">{item.title}</button>
+                    </Link>
                 </li>
               );
             })}
           </ul>
         </div>
-        <div className="m-5">
+        <div className="m-4 d-flex align-items-center">
+        <FontAwesomeIcon className="text-danger fs-2 me-2" icon={faToggleOff} />
           <Link to="/">
-            <button className="btn btn-danger fs-5">Log out</button>
+            <button className="btn btn-danger fs-5">Cerrar Sesión</button>
           </Link>
         </div>
       </div>

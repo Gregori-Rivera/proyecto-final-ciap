@@ -8,6 +8,10 @@
     }
   }
 
+.sidebarButtons {
+   width: 20vw;
+}
+
 /* .allowScroll {
 overflow: visible;
 } */

@@ -79,11 +79,14 @@ export const Single = (props) => {
 
   return (
     <div className="jumbotron">
+      <div className="d-flex justify-content-start align-items-center">
         <Link to="/home">
           <span className="btn btn-secondary btn-lg m-3" href="#" role="button">
             <FontAwesomeIcon icon={ faArrowLeft } />
           </span>
         </Link>
+        <h5 className="mx-2 fs-2">Mostrar Información</h5>
+      </div>
         <div className="container">
           <div className="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
             <div className="tab-content" id="myTabContent">

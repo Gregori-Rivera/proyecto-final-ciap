@@ -52,6 +52,24 @@ const getState = ({ getStore, getActions, setStore }) => {
           initial: "white",
           link: "/agregar/",
         },
+        {
+          title: "Eliminar información",
+          background: "white",
+          initial: "white",
+          link: "/eliminar/",
+        },
+        {
+          title: "Modificar información",
+          background: "white",
+          initial: "white",
+          link: "/modificar/",
+        },
+        {
+          title: "Gráficos adicionales",
+          background: "white",
+          initial: "white",
+          link: "/graficos/",
+        },
       ],
 			
     },

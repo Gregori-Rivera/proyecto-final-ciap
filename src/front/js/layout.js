@@ -7,10 +7,13 @@ import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import { Nosotros } from "./pages/nosotros";
 import { Agregar } from "./pages/agregar";
+import { Eliminar } from "./pages/eliminar";
+import { Modificar } from "./pages/modificar";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Graficos } from "./pages/graficos";
 
 //create your first component
 const Layout = () => {
@@ -29,6 +32,9 @@ const Layout = () => {
             <Route element={<Single />} path="/single" />
             <Route element={<Nosotros />} path="/nosotros" />
             <Route element={<Agregar />} path="/agregar" />
+            <Route element={<Eliminar />} path="/eliminar" />
+            <Route element={<Modificar />} path="/modificar" />
+            <Route element={<Graficos />} path="/graficos" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />
