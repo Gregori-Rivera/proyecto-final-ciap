@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, addDoc, getFirestore, getDocs, doc, deleteDoc, runTransaction, query, where } from "firebase/firestore";
+import { collection, addDoc, getFirestore, getDocs, doc, deleteDoc, runTransaction, query, where, setDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -112,6 +112,37 @@ const getState = ({ getStore, getActions, setStore }) => {
               }
           
               await deleteDoc(doc(db, "banks", idSelected[i]));
+              getActions().getBanks();
+            });
+            console.log("Transaction successfully committed!");
+          } catch (e) {
+            console.log("Transaction failed: ", e);
+          }
+        }
+      },
+
+      modifyBank: async (bank) => {
+        const banksRef = collection(db, "banks");
+        const q = query(banksRef, where("aba", "==", bank.abaMod), where("puerto", "==", bank.puertoMod));
+        const querySnapshot = await getDocs(q);
+        const idSelected = querySnapshot.docs.map((doc) => doc.id);
+        for(let i = 0; i < idSelected.length; i++){
+          const sfDocRef = doc(db, "banks", idSelected[i]);
+          try {
+            await runTransaction(db, async (transaction) => {
+              const sfDoc = await transaction.get(sfDocRef);
+              if (!sfDoc.exists()) {
+                throw "Document does not exist!";
+              }
+          
+              await setDoc(doc(db, "banks", idSelected[i]), {
+                aba: bank.aba,
+                nombreBanco: bank.nombreBanco,
+                ambiente: bank.ambiente,
+                switch: bank.switch,
+                producto: bank.producto,
+                puerto: bank.puerto
+              });
               getActions().getBanks();
             });
             console.log("Transaction successfully committed!");

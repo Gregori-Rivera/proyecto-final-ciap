@@ -15,7 +15,9 @@ export const Modificar = () =>  {
     ambiente: "",
     switch: "",
     producto: "",
-    puerto: ""
+    puerto: "",
+    abaMod: "",
+    puertoMod: ""
   });
   
   const [formValues, setFormValues] = useState([]);
@@ -26,7 +28,7 @@ export const Modificar = () =>  {
     e.preventDefault();
     setFormValues((prevFormValues) => [...prevFormValues, initialValues]);
     // localStorage.setItem('formValues', JSON.stringify(Array.from(formValues.entries())));
-    actions.addBank(initialValues);
+    actions.modifyBank(initialValues);
   };
 
   return (
@@ -38,6 +40,48 @@ export const Modificar = () =>  {
           </span>
         </Link>
         <h5 className="mx-2 fs-2">Modificar Información</h5>
+      </div>
+      <div className="container mx-auto d-flex" style={{ maxWidth: 600, height: 'auto' }}>
+        <div className="col-6">
+          <Form>
+            <Form.Group className="m-3" controlId="formBasicModificar">
+                <Form.Label>Aba y puerto del registro a modificar:</Form.Label>
+                <Form.Control className="my-2" type="text" placeholder="Ingrese el Aba actual"  value={initialValues.abaMod} onChange={(e) => setInitialValues({ ...initialValues, abaMod: e.target.value })}/>
+                <Form.Control className="my-2" type="text" placeholder="Ingrese el Puerto actual" value={initialValues.puertoMod} onChange={(e) => setInitialValues({ ...initialValues, puertoMod: e.target.value })}/>
+            </Form.Group>
+            <Button className="m-3" variant="primary" type="submit" onClick={submitForm}>
+              Modificar
+            </Button>
+          </Form>
+        </div>
+        <div className="col-6">
+          <Form>
+            <Form.Group className="m-3" controlId="formBasicAba">
+              <Form.Label>Aba</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese el nuevo Aba"  value={initialValues.aba} onChange={(e) => setInitialValues({ ...initialValues, aba: e.target.value })}/>
+            </Form.Group>
+            <Form.Group className="m-3" controlId="formBasicNombreBanco">
+              <Form.Label>Nombre de Banco</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese el nuevo Nombre del Banco" value={initialValues.nombreBanco} onChange={(e) => setInitialValues({ ...initialValues, nombreBanco: e.target.value })}/>
+            </Form.Group>
+            <Form.Group className="m-3" controlId="formBasicAmbiente">
+              <Form.Label>Ambiente</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese el nuevo Ambiente" value={initialValues.ambiente} onChange={(e) => setInitialValues({ ...initialValues, ambiente: e.target.value })}/>
+            </Form.Group>
+            <Form.Group className="m-3" controlId="formBasicSwitch">
+              <Form.Label>Switch</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese el nuevo Switch" value={initialValues.switch} onChange={(e) => setInitialValues({ ...initialValues, switch: e.target.value })}/>
+            </Form.Group>
+            <Form.Group className="m-3" controlId="formBasicProducto">
+              <Form.Label>Producto</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese el nuevo Producto" value={initialValues.producto} onChange={(e) => setInitialValues({ ...initialValues, producto: e.target.value })}/>
+            </Form.Group>
+            <Form.Group className="m-3" controlId="formBasicPuerto">
+              <Form.Label>Puerto</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese el nuevo Puerto" value={initialValues.puerto} onChange={(e) => setInitialValues({ ...initialValues, puerto: e.target.value })}/>
+            </Form.Group>
+          </Form>
+        </div>
       </div>
     </div>
   );
