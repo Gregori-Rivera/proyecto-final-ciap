@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoProvisionalApp from "../../img/logo-provisional-app.png";
+import logoApp from "../../img/logo-app.png";
 
 export const Navbar = () => {
 	return (
@@ -8,7 +8,7 @@ export const Navbar = () => {
 			<div className="container">
 				<Link to="/home">
 					<div className="navbar-brand mb-0 h1">
-						<img src={logoProvisionalApp} height="65px"/>
+						<img src={logoApp} height="65px"/>
 					</div>
 				</Link>
 				<Link to="/nosotros">

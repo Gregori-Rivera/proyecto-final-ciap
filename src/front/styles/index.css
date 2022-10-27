@@ -9,7 +9,13 @@
   }
 
 .sidebarButtons {
-   width: 20vw;
+   width: 10vw;
+   min-width: 100px;
+}
+
+.iconBox {
+  width: 4vw;
+  min-width: 30px;
 }
 
 .table-wrapper {

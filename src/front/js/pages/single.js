@@ -78,7 +78,7 @@ export const Single = (props) => {
   }, []);
 
   return (
-    <div className="flex-column">
+    <div className="container mx-auto mb-5">
       <div className="d-flex justify-content-start align-items-center">
         <Link to="/home">
           <span className="btn btn-secondary btn-lg m-3" href="#" role="button">

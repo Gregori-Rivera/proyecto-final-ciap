@@ -201,34 +201,36 @@ export const Home = () => {
                   className="list-group-item d-flex justify-content-start align-items-center"
                   style={{ background: item.background }}
                 >
-                  {index === 0 ? (
-                    <FontAwesomeIcon
-                      className="fs-2 mx-auto px-auto"
-                      icon={faFileAlt}
-                    />
-                  ) : index === 1 ? (
-                    <FontAwesomeIcon
-                      className="fs-2 mx-auto px-auto"
-                      icon={faFileImport}
-                    />
-                  ) : index === 2 ? (
-                    <FontAwesomeIcon
-                      className="fs-2 mx-auto px-auto"
-                      icon={faFileExcel}
-                    />
-                  ) : index === 3 ? (
-                    <FontAwesomeIcon
-                      className="fs-2 mx-auto px-auto"
-                      icon={faFileSignature}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      className="fs-2 mx-auto px-auto"
-                      icon={faChartPie}
-                    />
-                  )}
+                  <div className="iconBox d-flex justify-content-center">
+                    {index === 0 ? (
+                      <FontAwesomeIcon
+                        className="fs-2 mx-auto"
+                        icon={faFileAlt}
+                      />
+                    ) : index === 1 ? (
+                      <FontAwesomeIcon
+                        className="fs-2 mx-auto"
+                        icon={faFileImport}
+                      />
+                    ) : index === 2 ? (
+                      <FontAwesomeIcon
+                        className="fs-2 mx-auto"
+                        icon={faFileExcel}
+                      />
+                    ) : index === 3 ? (
+                      <FontAwesomeIcon
+                        className="fs-2 mx-auto"
+                        icon={faFileSignature}
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        className="fs-2 mx-auto"
+                        icon={faChartPie}
+                      />
+                    )}
+                  </div>
                   <Link to={item.link}>
-                    <button className="btn btn-warning fs-5 sidebarButtons">
+                    <button className="btn btn-warning sidebarButtons">
                       {item.title}
                     </button>
                   </Link>
@@ -243,7 +245,7 @@ export const Home = () => {
             icon={faToggleOff}
           />
           <Link to="/">
-            <button className="btn btn-danger fs-5">Cerrar Sesión</button>
+            <button className="btn btn-danger fs-5 mx-auto">Cerrar Sesión</button>
           </Link>
         </div>
       </div>
