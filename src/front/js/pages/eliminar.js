@@ -11,10 +11,6 @@ export const Eliminar = () =>  {
 
   const [initialValues, setInitialValues] = useState({
     aba: "",
-    nombreBanco: "",
-    ambiente: "",
-    switch: "",
-    producto: "",
     puerto: ""
   });
   
@@ -26,7 +22,8 @@ export const Eliminar = () =>  {
     e.preventDefault();
     setFormValues((prevFormValues) => [...prevFormValues, initialValues]);
     // localStorage.setItem('formValues', JSON.stringify(Array.from(formValues.entries())));
-    actions.addBank(initialValues);
+    console.log(initialValues);
+    actions.deleteBank(initialValues);
   };
 
   return (
@@ -38,6 +35,18 @@ export const Eliminar = () =>  {
           </span>
         </Link>
         <h5 className="mx-2 fs-2"> Eliminar Información</h5>
+      </div>
+      <div className="container mx-auto" style={{ maxWidth: 500, height: 'auto' }}>
+        <Form>
+          <Form.Group className="m-3" controlId="formBasicEliminar">
+            <Form.Label>Aba y puerto del registro a eliminar:</Form.Label>
+            <Form.Control className="my-2" type="text" placeholder="Ingrese el Aba"  value={initialValues.aba} onChange={(e) => setInitialValues({ ...initialValues, aba: e.target.value })}/>
+            <Form.Control className="my-2" type="text" placeholder="Ingrese el Puerto" value={initialValues.puerto} onChange={(e) => setInitialValues({ ...initialValues, puerto: e.target.value })}/>
+          </Form.Group>
+          <Button className="m-3" variant="primary" type="submit" onClick={submitForm}>
+            Eliminar
+          </Button>
+        </Form>
       </div>
     </div>
   );
