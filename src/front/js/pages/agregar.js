@@ -66,9 +66,14 @@ export const Agregar = () =>  {
             <Form.Label>Puerto</Form.Label>
             <Form.Control type="text" placeholder="Ingrese el Puerto" value={initialValues.puerto} onChange={(e) => setInitialValues({ ...initialValues, puerto: e.target.value })}/>
           </Form.Group>
-          <Button className="m-3" variant="primary" type="submit" onClick={submitForm}>
-            Añadir
-          </Button>
+            <Button className="m-3" variant="primary" type="submit" onClick={submitForm}>
+              Añadir
+            </Button> 
+          {/* <Link to="/home">
+            <Button className="m-3" variant="primary" type="submit" onClick={submitForm}>
+              Añadir
+            </Button>
+          </Link>       */}
         </Form>
       </div>
     </div>

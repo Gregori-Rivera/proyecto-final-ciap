@@ -9,13 +9,17 @@ import { faFileImport } from "@fortawesome/free-solid-svg-icons";
 import { faFileExcel } from "@fortawesome/free-solid-svg-icons";
 import { faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import { faToggleOff } from "@fortawesome/free-solid-svg-icons";
+import { faCircleDot } from "@fortawesome/free-solid-svg-icons";
 import { faEraser } from "@fortawesome/free-solid-svg-icons";
 import Chart from "chart.js/auto";
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 // import Chart from "../component/Chart.js";
 //import Chart from "Chart.js";
 import { Context } from "../store/appContext";
 import { Line, Pie } from "react-chartjs-2";
 import { Doughnut } from "react-chartjs-2";
+import logoDona from "../../img/donut-chart.png";
 import { object, string } from "prop-types";
 
 export const Home = () => {
@@ -24,8 +28,9 @@ export const Home = () => {
     labels: [],
     datasets: [],
   });
+  const [key, setKey] = useState("home");
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
-  const locale = "en";
+  const locale = "es";
   const [today, setDate] = React.useState(new Date());
   // Save the current date to be able to trigger an update
 
@@ -46,21 +51,13 @@ export const Home = () => {
   })}\n\n`;
 
   const hour = today.getHours();
-  const wish = `Good ${
-    (hour < 12 && "Morning") || (hour < 17 && "Afternoon") || "Evening"
-  }, `;
+  const wish = `${(hour < 12 && "Buenos Días") || (hour < 17 && "Buenas Tardes") || "Buenas Noches"}, `;
 
   const time = today.toLocaleTimeString(locale, {
     hour: "numeric",
     hour12: true,
     minute: "numeric",
   });
-
-  function graficando() {
-    store.banks.map((item, index) => {});
-  }
-
-  graficando();
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -95,11 +92,10 @@ export const Home = () => {
             label: "",
             data: Object.values(ambientes),
             backgroundColor: [
-              "#1870d5",
-              "#FF7A7A",
-              "#50AF95",
-              "#f3ba2f",
-            ],
+            "#1870d5",
+            "#E74C3C",
+            "#28B463",
+            "#F8D529"],
           },
         ],
       });
@@ -112,10 +108,9 @@ export const Home = () => {
             data: Object.values(productos),
             backgroundColor: [
               "#1870d5",
-              "#FF7A7A",
-              "#50AF95",
-              "#f3ba2f",
-            ],
+              "#E74C3C",
+              "#28B463",
+              "#F8D529"],
           },
         ],
       });
@@ -139,18 +134,48 @@ export const Home = () => {
           {date}
           {time}
           <pre> </pre>
-          {wish} username
+          {wish} Bienvenido a G.I.B
         </span>
         <div className="d-flex"></div>
       </div>
 
-      <div className="bg-light fs-1 d-flex justify-content-center">
+      <div className="Graficando">
+      <Tabs
+        id="controlled-tab-example"
+        activeKey={key}
+        onSelect={(k) => setKey(k)}
+        className="mb-3 d-flex justify-content-center"
+      >
+        <Tab eventKey="home" 
+        title={<img src={logoDona} height="35px"/>}>
+        <div className="bg-light fs-1 d-flex justify-content-center">
         <div
           className="barchart"
           style={{ zIndex: "1", height: "700px", width: "700px" }}
-        > 
-          <Doughnut data={chartDataDoughnut} options={{ maintainAspectRatio: false }} />
+        >
+          <Doughnut
+            data={chartDataDoughnut}
+            options={{ maintainAspectRatio: false }}
+          />
         </div>
+        <div
+          className="fs-1 m-auto d-flex justify-content-center align-items-center"
+          style={{
+            zIndex: "2",
+            position: "absolute",
+            height: "700px",
+            width: "700px",
+            animation: "fadeMe 2.5s ease-out",
+            animationFillMode: "forwards",
+          }}
+        >
+          <span>Cargando gráfica...</span>
+        </div>
+      </div>
+        </Tab>
+        <Tab eventKey="profile" 
+        title={<FontAwesomeIcon className="fs-2" icon={faChartPie} />}>
+        <div className="bg-light fs-1 d-flex justify-content-center">
         <div
           className="piechart"
           style={{ zIndex: "1", height: "700px", width: "700px" }}
@@ -171,8 +196,11 @@ export const Home = () => {
             animationFillMode: "forwards",
           }}
         >
-          <span>Loading graphs...</span>
+          <span>Cargando gráfica...</span>
         </div>
+      </div>
+        </Tab>
+      </Tabs>
       </div>
 
       <div
@@ -245,7 +273,9 @@ export const Home = () => {
             icon={faToggleOff}
           />
           <Link to="/">
-            <button className="btn btn-danger fs-5 mx-auto">Cerrar Sesión</button>
+            <button className="btn btn-danger fs-5 mx-auto">
+              Cerrar Sesión
+            </button>
           </Link>
         </div>
       </div>

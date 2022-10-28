@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import logoApp from "../../img/logo-app.png";
 
 import { Link } from "react-router-dom";
 
@@ -19,7 +20,7 @@ export const Login = () => {
   return (
     <div className="text-center" id="img-fondo">
       <div className="user-img">
-        <img src="https://picsum.photos/id/323/100/100"></img>
+        <img src={logoApp}></img>
       </div>
       <div className="Auth-form-container">
         <form className="Auth-form">

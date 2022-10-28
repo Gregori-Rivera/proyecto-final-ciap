@@ -103,13 +103,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         const querySnapshot = await getDocs(q);
         const idSelected = querySnapshot.docs.map((doc) => doc.id);
         for(let i = 0; i < idSelected.length; i++){
-          const sfDocRef = doc(db, "banks", idSelected[i]);
+          //const sfDocRef = doc(db, "banks", idSelected[i]);
           try {
             await runTransaction(db, async (transaction) => {
-              const sfDoc = await transaction.get(sfDocRef);
-              if (!sfDoc.exists()) {
-                throw "Document does not exist!";
-              }
+              //const sfDoc = await transaction.get(sfDocRef);
+              // if (!sfDoc.exists()) {
+              //   throw "Document does not exist!";
+              // }
           
               await deleteDoc(doc(db, "banks", idSelected[i]));
               getActions().getBanks();
@@ -127,13 +127,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         const querySnapshot = await getDocs(q);
         const idSelected = querySnapshot.docs.map((doc) => doc.id);
         for(let i = 0; i < idSelected.length; i++){
-          const sfDocRef = doc(db, "banks", idSelected[i]);
+          //const sfDocRef = doc(db, "banks", idSelected[i]);
           try {
             await runTransaction(db, async (transaction) => {
-              const sfDoc = await transaction.get(sfDocRef);
-              if (!sfDoc.exists()) {
-                throw "Document does not exist!";
-              }
+              // const sfDoc = await transaction.get(sfDocRef);
+              // if (!sfDoc.exists()) {
+              //   throw "Document does not exist!";
+              // }
           
               await setDoc(doc(db, "banks", idSelected[i]), {
                 aba: bank.aba,
